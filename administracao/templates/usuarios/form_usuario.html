@@ -5,7 +5,11 @@
     <div class="card card-primary">
         <div class="card-header">
             <div class="card-title">
-                Cadastro de Usuário
+                {% if request.resolver_match.url_name == 'cadastrar_usuario' %}
+                    Cadastro de Usuário
+                {% else %}
+                    Edição de Usuário
+                {% endif %}
             </div>
         </div>
         <div class="card-body">
