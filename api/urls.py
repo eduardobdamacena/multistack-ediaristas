@@ -6,7 +6,7 @@ from .views import (diaristas_localidade_view, endereco_cep_view,
 urlpatterns = [
     path('diaristas/localidades', diaristas_localidade_view.DiaristasLocalidades.as_view(),
         name='diaristas-localidades-list'),
-    path('endereco', endereco_cep_view.EnderecoCep.as_view(), name="endereco-cep-list"),
+    path('enderecos', endereco_cep_view.EnderecoCep.as_view(), name="endereco-cep-list"),
     path('diaristas/disponibilidade',
         disponibilidade_atendimento_cidade.DisponibilidadeAtendimentoCidade.as_view(),
         name="disponibilidade-atendimento-cidade-list"),
@@ -15,6 +15,7 @@ urlpatterns = [
     path('usuarios', usuario_view.Usuario.as_view(), name='usuario-list'),
     path('me', me_view.Me.as_view(), name="me-list"),
     path('diarias', diaria_view.Diaria.as_view(), name="diaria-list"),
+    path('diarias/<int:diaria_id>', diaria_view.DiariaID.as_view(), name='diaria-detail'),
     path('diarias/<int:diaria_id>/pagamentos', pagamento_diaria_view.PagamentoDiaria.as_view(),
         name='pagamento-diaria-list')
 ]
