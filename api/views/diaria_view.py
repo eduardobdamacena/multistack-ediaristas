@@ -1,3 +1,4 @@
+from rest_framework import response
 from rest_framework.views import APIView
 from ..serializers import diaria_serializer
 from rest_framework.response import Response
@@ -6,15 +7,18 @@ from rest_framework import permissions
 from rest_framework import serializers
 from ..services.diaria_service import listar_diarias_usuario, listar_diaria_id
 from ..permissions import dono_permission
+from drf_yasg.utils import swagger_auto_schema 
 
 class Diaria(APIView):
     permissions = [permissions.IsAuthenticated]
+    @swagger_auto_schema(responses={200: diaria_serializer.DiariaSerializer()})
 
     def get(self, request, format=None):
         diarias = listar_diarias_usuario(request.user.id)
         serializer_diaria = diaria_serializer.DiariaSerializer(diarias, many=True, context={'request': request})
         return Response(serializer_diaria.data, status=status_http.HTTP_200_OK)
 
+    @swagger_auto_schema(responses={201: diaria_serializer.DiariaSerializer()}, request_body=diaria_serializer.DiariaSerializer)
     def post(self, request, format=None):
         serializer_diaria = diaria_serializer.DiariaSerializer(data=request.data,
                                                                     context={'request': request})
