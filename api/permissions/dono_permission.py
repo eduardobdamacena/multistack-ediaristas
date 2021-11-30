@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 class DonoPermission(permissions.BasePermission):
-    message = "Você não possui permissão para acessar este dado"
+    message = 'Você não possui permissão para acessar este dado'
 
     def has_permission(self, request, view):
         return request.user and request.user.is_authenticated

@@ -2,8 +2,8 @@
 
 ### Instalando o projeto
 
-#### Clonar o Projeto
-`git clone https://github.com/eduardobdamacena/multistack-ediaristas.git`
+#### Clonar o projeto
+`git clone https://github.com/treinaweb/multistack-ediaristas-python`
 
 #### Instalar dependências
 `pip install -r requirements.txt`
@@ -13,16 +13,16 @@
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nome_do_banco_de_dados',
-        'HOST': 'localhost',
-        'PORT': 3306,
-        'USER': 'root',
-        'PASSWORD': 'root'
+        'NAME': 'nome_do_bd',
+        'HOST': 'host_do_bd',
+        'PORT': 'porta_bd',
+        'USER': 'usuario_bd',
+        'PASSWORD': 'senha_bd'
     }
 }
 ```
 
-#### Migrar Banco de Dados
+#### Migrar banco de dados
 `python manage.py migrate`
 
 #### Iniciar o servidor

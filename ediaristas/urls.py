@@ -18,29 +18,12 @@ from django.urls import path
 from django.urls.conf import include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from api.views import logout_view
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Ediaristas API",
-        default_version='v1',
-        description="API do ediaristas",
-        contact=openapi.Contact(email="eduardobusato51@gmail.com"),
-        license=openapi.License(name="BSD License"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('administracao/', include('administracao.urls')),
     path('api/', include('api.urls')),
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth/token/refresh/', TokenRefreshView.as_view(), name="token_refresh"),
-    path("auth/logout/", logout_view.Logout.as_view(), name='logout-list'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('auth/logout/', logout_view.Logout.as_view(), name='logout-list')
 ]

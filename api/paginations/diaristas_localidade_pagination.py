@@ -7,7 +7,7 @@ class DiaristasLocalidadePagination(PageNumberPagination):
 
     def get_paginated_response(self, data):
         return Response({
-            'quantidade_diaristas':(self.page.paginator.count - self.page_size)
+            'quantidade_diaristas': (self.page.paginator.count - self.page_size)
             if self.page.paginator.count > self.page_size else 0,
             'diaristas': data
         })

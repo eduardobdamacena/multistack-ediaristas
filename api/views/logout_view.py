@@ -5,7 +5,7 @@ from rest_framework import status as status_http
 from rest_framework import permissions
 
 class Logout(APIView):
-    permission_classes=[permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, ]
 
     def post(self, request):
         try:

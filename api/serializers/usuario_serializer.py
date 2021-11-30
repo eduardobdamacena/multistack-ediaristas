@@ -7,7 +7,7 @@ from ..services import usuario_service
 from django.urls import reverse
 
 from ..models import Usuario
-from ..hateos import Hateos
+from ..hateoas import Hateoas
 
 class UsuarioSerializer(serializers.ModelSerializer):
     chave_pix = serializers.CharField(required=False)
@@ -50,14 +50,14 @@ class UsuarioSerializer(serializers.ModelSerializer):
     
     def get_links(self, user):
         usuario = usuario_service.listar_usuario_email(user.email)
-        links = Hateos()
-        links.add_get('lista_diarias', reverse('diaria-list'))
+        links = Hateoas()
         links.add_get('lista_diarias', reverse('diaria-list'))
         if usuario.tipo_usuario == 1:
             links.add_post('cadastrar_diaria', reverse('diaria-list'))
         else:
             links.add_put('cadastrar_endereco', reverse('endereco-diarista-detail'))
             links.add_put('relacionar_cidades', reverse('cidades-atendimento-diarista-detail'))
+            links.add_get('lista_oportunidades', reverse('oportunidade-list'))
         return links.to_array()
 
 
